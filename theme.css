@@ -1312,7 +1312,7 @@ blockquote {
   width: 100%;
   overflow-wrap: anywhere;
   border-radius: var(--radius-m);
-  margin-bottom: var(--scale-dimension-size-0);
+  margin-bottom: var(--scale-dimension-size-25);
   border-radius: var(--radius-m);
   background-color: var(--color-gray-alpha-25);
 } /*Reading Mode*/

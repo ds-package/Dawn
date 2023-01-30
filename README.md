@@ -1,6 +1,6 @@
 # Dawn
 
-![image](./screenshot.png)
+![Dawn-Theme cover image](./screenshot.png)
 
 By incorporating the serenity of the dawn hours into its design, the Dawn Theme enhances your writing experience with subtle, yet impactful, modifications.
 
@@ -14,7 +14,7 @@ And we plan to continuously update it.
 
 ## Color
 
-![image](./assets//00-mode.png)
+![Color set that supports dark mode and white mode](./assets//00-mode.png)
 
 I personally have a preference for high-contrast modes, but for the initial version, pure white (#FFFFFF) and black (#000000) were intentionally excluded in the creation of design tokens.
 
@@ -24,13 +24,13 @@ Even with low contrast, the theme was created with consideration for readability
 
 ## Document
 
-**form expression**
+**form**
 
-![image](./assets/01-document.png)
+![Images that support the Markdown Document Form](./assets/01-document.png)
 
 **Blockquotes & Callouts**
 
-![image](./assets/02-document.png)
+![More beautiful Blockquotes & Callouts image](./assets/02-document.png)
 
 With Obsidian, you can create beautiful notes using various markdown options.
 
@@ -40,7 +40,8 @@ Make this part more stunning with feedback, please!
 
 ## To-Do
 
-- [ ] Mobile
+- [ ] Mobile View
 - [ ] Plug-in support
   - [ ] More Dataviews
   - [ ] Canvas
+- [ ] Cleanup CSS
