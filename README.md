@@ -9,9 +9,6 @@ By incorporating the serenity of the dawn hours into its design, the Dawn Theme 
 - Enhancing the Elegance with Subtly Spacious Design in UI
 - Soft Dark and Light Modes with Crisp Space
 - Fine-tuned Markdown Writing and Previewing Experience
-- KR 정갈한 UI
-- KR 저대비로 눈이 편안한 다크모드, 화이트모드
-- KR 섬세하게 조정된 마크다운 편집& Preview 화면
 
 And we plan to continuously update it.
 
@@ -26,8 +23,6 @@ _In the initial version, we aimed to primarily capture the serenity of Dawn. If 
 Even with low contrast, the theme was created with consideration for readability and accessibility. (It's not perfect though).
 
 ## Document
-
----
 
 **form expression**
 
