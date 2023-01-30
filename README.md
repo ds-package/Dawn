@@ -45,3 +45,9 @@ Make this part more stunning with feedback, please!
   - [ ] More Dataviews
   - [ ] Canvas
 - [ ] Cleanup CSS
+
+## LICENSE
+
+<p align="left"><a href="https://github.com/minheeyoon/Dawn/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a></p>
+
+You can freely change or suggest😁
