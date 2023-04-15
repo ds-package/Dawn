@@ -1303,6 +1303,7 @@ blockquote {
 
 .callout-icon {
   align-self: baseline;
+  margin-top : var(--scale-dimension-size-0)
 }
 
 .callout-content > p {
