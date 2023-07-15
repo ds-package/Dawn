@@ -220,9 +220,9 @@ body {
   --file-header-justify: center;
 
   /* Relative font sizes */
-  --font-smallest: 0.8em;
-  --font-smaller: 0.875em;
-  --font-small: 0.933em;
+  --font-smallest: 0.8rem;
+  --font-smaller: 0.875rem;
+  --font-small: 0.933rem;
 
   /* UI font sizes */
   --font-ui-smaller: var(--scale-dimension-font-size-25);
@@ -268,12 +268,12 @@ body {
   --h4-line-height: 1.4;
   --h5-line-height: var(--line-height-normal);
   --h6-line-height: var(--line-height-normal);
-  --h1-size: 1.375em;
-  --h2-size: 1.25em;
-  --h3-size: 1.125em;
-  --h4-size: 1em;
-  --h5-size: 0.875em;
-  --h6-size: 0.813em;
+  --h1-size: 1.375rem;
+  --h2-size: 1.25rem;
+  --h3-size: 1.125rem;
+  --h4-size: 1rem;
+  --h5-size: 0.875rem;
+  --h6-size: 0.813rem;
   --h1-style: normal;
   --h2-style: normal;
   --h3-style: normal;
@@ -380,14 +380,14 @@ body {
   --link-unresolved-decoration-color: hsla(var(--interactive-accent-hsl), 0.3);
 
   /* Lists */
-  --list-indent: 1em;
-  --list-spacing: 0.14em;
+  --list-indent: 1rem;
+  --list-spacing: 0.14rem;
   --list-marker-color: var(--color-base-35);
   --list-marker-color-hover: var(--text-muted);
   --list-marker-color-collapsed: var(--text-accent);
   --list-bullet-border: none;
   --list-bullet-radius: 50%;
-  --list-bullet-size: 0.2em;
+  --list-bullet-size: 0.2rem;
   --list-bullet-transform: none;
   --list-numbered-style: decimal;
 
@@ -583,8 +583,8 @@ body {
   --tag-border-color: hsla(var(--interactive-accent-hsl), 0.15);
   --tag-border-color-hover: hsla(var(--interactive-accent-hsl), 0.15);
   --tag-border-width: 0px;
-  --tag-padding-x: 0.65em;
-  --tag-padding-y: 0.25em;
+  --tag-padding-x: 0.65rem;
+  --tag-padding-y: 0.25rem;
   --tag-radius: var(--radius-m);
 
   /* Window frame */
@@ -1240,11 +1240,11 @@ del {
 
 /*Bullet List Text*/
 li {
-  margin-block-end: 0.12em;
+  margin-block-end: 0.12rem;
 } /*Reading Mode*/
 
 .markdown-rendered ul.has-list-bullet li p:first-of-type {
-  margin-block-end: 0.25em;
+  margin-block-end: 0.25rem;
 }
 
 /*Checkbox List*/
@@ -1255,8 +1255,8 @@ input[type="checkbox" i] {
 /*--Blockquotes & Callout --*/
 
 blockquote {
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
 }
 
 .callout-title {
@@ -1264,8 +1264,81 @@ blockquote {
   padding: var(--size-4-3) 0 var(--size-4-3) 0;
 }
 
+.callout[data-callout="bug"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="bug"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="default"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="default"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="error"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="error"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="example"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="example"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="fail"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="fail"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="important"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="important"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
 .callout[data-callout="info"] .callout-title {
   margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
   gap: var(--size-4-2);
   padding: var(--callout-title-padding);
 }
@@ -1275,15 +1348,88 @@ blockquote {
   padding-top: 0px;
 }
 
-.callout[data-callout="bug"] .callout-title {
+.callout[data-callout="question"] .callout-title {
   margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
   gap: var(--size-4-2);
   padding: var(--callout-title-padding);
 }
 
-.callout[data-callout="bug"] .callout-title .callout-icon {
+.callout[data-callout="question"] .callout-title .callout-icon {
   align-self: center;
-  padding-top: var(--scale-dimension-size-0);
+  padding-top: 0px;
+}
+
+.callout[data-callout="success"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="success"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="summary"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="summary"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="tip"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="tip"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="todo"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="todo"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="warning"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="warning"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
+}
+
+.callout[data-callout="quote"] .callout-title {
+  margin-top: var(--size-4-3);
+  margin-bottom: var(--size-4-3);
+  gap: var(--size-4-2);
+  padding: var(--callout-title-padding);
+}
+
+.callout[data-callout="quote"] .callout-title .callout-icon {
+  align-self: center;
+  padding-top: 0px;
 }
 
 .callout-title-inner {
@@ -1307,7 +1453,7 @@ blockquote {
 }
 
 .callout-content > p {
-  margin-block-start: 0.3em;
+  margin-block-start: 0.3rem;
 }
 
 .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
