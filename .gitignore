@@ -1,2 +1,6 @@
 # Mac
 .DS_Store
+
+# 로컬 작업 문서 (핸드오프/기획 — 공개 fork 히스토리에 미포함)
+HANDOFF.md
+THEME_UPDATE_PLAN.md
