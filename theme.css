@@ -1216,6 +1216,32 @@ del {
   border-radius: var(--radius-m);
 } /*Reading Mode*/
 
+/* Templater command block — the opener line (.templater-inline, e.g. <%*)
+   plus the body lines (.templater-command-bg) together form ONE code block.
+   Unify them: same code fill, no ruled underline, code line-height, mono.
+   Round only the block's outer corners — top on the opener, bottom on the
+   last body line (the one NOT followed by another body line, via :has). */
+.markdown-source-view.mod-cm6 .cm-line.templater-inline,
+.markdown-source-view.mod-cm6 .cm-line.templater-command-bg {
+  font-family: var(--font-monospace);
+  font-size: var(--code-size);
+  background-color: var(--code-background);
+  background-image: none;
+  line-height: var(--line-height-normal);
+  padding-inline: var(--size-4-3);
+}
+.markdown-source-view.mod-cm6 .cm-line.templater-inline {
+  border-top-left-radius: var(--radius-m);
+  border-top-right-radius: var(--radius-m);
+  padding-top: var(--size-2-3);
+}
+.markdown-source-view.mod-cm6
+  .cm-line.templater-command-bg:not(:has(+ .cm-line.templater-command-bg)) {
+  border-bottom-left-radius: var(--radius-m);
+  border-bottom-right-radius: var(--radius-m);
+  padding-bottom: var(--size-2-3);
+}
+
 /*Codeblock (no language specified) */
 .markdown-preview-view pre {
   border-radius: var(--radius-m);
@@ -1275,17 +1301,31 @@ blockquote {
 .callout-title {
   margin-top: var(--size-4-3);
   margin-bottom: var(--size-4-3);
-  gap: var(--size-4-2);
+  /* icon↔text gap is controlled by .callout-title-inner's left padding below,
+     so zero the flex gap (else the two spacings stack) */
+  gap: 0;
   padding: var(--callout-title-padding);
 }
 .callout-title .callout-icon {
   align-self: center;
   padding-top: 0px;
 }
+/* callout icon → 16×16 */
+.callout-icon svg {
+  width: 16px;
+  height: 16px;
+}
 
 .callout-title-inner {
   font-weight: var(--font-normal);
   border-left: none;
+  /* spacing between the icon and the title text */
+  padding: 0 0 0 var(--size-2-3);
+}
+
+/* callout body text size */
+.callout-content {
+  font-size: var(--scale-dimension-font-size-100);
 }
 
 .markdown-rendered blockquote {
@@ -1330,13 +1370,20 @@ blockquote {
    DOM and would paint as a stray rounded box floating above the embed.
    Rendered blocks already get their radius from the embed rule above. */
 
-/* Live Preview: match the reading-mode table radius + subtle fill */
+/* Live Preview: match the reading-mode table radius + subtle fill.
+   min = content width (max-content); NO max-width cap so a wide table grows
+   past the note width and the ancestor .cm-embed-block (overflow-x:auto)
+   scrolls it instead of compressing/wrapping the cells. */
 .markdown-source-view.mod-cm6 table {
   width: max-content;
-  max-width: 100%;
   border-radius: var(--radius-m);
   overflow: hidden;
   background-color: var(--color-gray-alpha-25);
+}
+/* editing table cells → roomier padding */
+.markdown-source-view.mod-cm6 table.table-editor td,
+.markdown-source-view.mod-cm6 table.table-editor th {
+  padding: var(--size-4-2) var(--size-4-1);
 }
 
 .markdown-rendered table {
@@ -1391,12 +1438,26 @@ blockquote {
 }
 
 /*--Frontmatter/Metadata/Yaml--*/
+/* Frontmatter card — reading (.frontmatter-container) + editing properties
+   panel (.metadata-container) share one look: paper-toned bg (theme-split:
+   light ash, dark base-20), 16px pad, large radius. bg MUST be theme-split
+   because light/dark want DIFFERENT tokens, not one token's two values. */
+.frontmatter-container,
+.metadata-container {
+  border-radius: var(--radius-l);
+  padding: var(--scale-dimension-size-200);
+}
 .frontmatter-container {
-  border-radius: var(--radius-m);
-  background-color: var(--color-gray-alpha-25);
-  padding: var(--size-4-3) var(--size-4-3) var(--size-4-3) var(--size-4-3);
   margin-bottom: var(--size-4-1);
 } /*Reading Mode*/
+.theme-light .frontmatter-container,
+.theme-light .metadata-container {
+  background-color: var(--color-ash-300);
+}
+.theme-dark .frontmatter-container,
+.theme-dark .metadata-container {
+  background-color: var(--color-base-20);
+}
 
 .frontmatter-container .frontmatter-container-header {
   color: var(--text-normal);
@@ -1424,6 +1485,28 @@ blockquote {
 
 .frontmatter-section-label {
   color: var(--text-accent);
+}
+
+/* property value fields fill the row so every well reaches the same right
+   edge — incl. date/number/datetime inputs that otherwise shrink to their
+   content width and float short. */
+.metadata-property-value,
+.metadata-property-value .metadata-input-longtext,
+.metadata-property-value .metadata-input-wrapper,
+.metadata-property-value input:not([type="checkbox"]) {
+  width: 100%;
+}
+/* value wells → page bg so they read as fields inset in the card
+   (card is ash-300/base-20; page bg is lighter → the input reads as a well) */
+.metadata-property-value .metadata-input-longtext,
+.metadata-property-value .metadata-input-wrapper,
+.metadata-property-value input {
+  background-color: var(--background-primary);
+}
+
+/* sidebar vault-profile → page bg to match the note surface */
+.workspace-sidedock-vault-profile {
+  background-color: var(--background-primary);
 }
 
 /*Frontmatter Tag*/
@@ -1594,6 +1677,7 @@ body {
 .cm-header-3,
 .cm-header-4 {
   letter-spacing: -0.014em;
+  font-weight: 600;
 }
 .markdown-rendered h1,
 .cm-header-1 {
@@ -1613,6 +1697,66 @@ body {
   padding-bottom: var(--size-2-2);
 }
 
+/* Unified heading rhythm — reading + editing share the SAME 16px above /
+   16px below every heading, so switching modes never shifts the layout.
+   Reading uses margin (blocks collapse cleanly); editing uses padding on
+   the cm-line (CM6 lines don't margin-collapse, and header lines are
+   already excluded from ruled lines, so padding just adds breathing room). */
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+  margin-top: var(--size-4-4);
+  margin-bottom: var(--size-4-4);
+}
+.markdown-source-view.mod-cm6 .HyperMD-header-1,
+.markdown-source-view.mod-cm6 .HyperMD-header-2,
+.markdown-source-view.mod-cm6 .HyperMD-header-3,
+.markdown-source-view.mod-cm6 .HyperMD-header-4,
+.markdown-source-view.mod-cm6 .HyperMD-header-5,
+.markdown-source-view.mod-cm6 .HyperMD-header-6 {
+  /* top spacing only — a padding-bottom here does NOT collapse with the blank
+     line the user typed after a heading (unlike reading-mode margin), so it
+     read as an always-present phantom "empty line". drop it; the following
+     line supplies the gap. */
+  padding-top: var(--size-4-4);
+}
+/* the blank source line markdown requires between a heading and the next
+   block (table/callout) is invisible in reading mode but shows as a full
+   32px ruled line in editing → reads as a phantom "extra enter". collapse
+   just that line (blank line directly after a heading) to a thin spacer so
+   editing tracks reading, and drop its ruled underline. */
+.markdown-source-view.mod-cm6
+  .cm-line[class*="HyperMD-header"] + .cm-line:has(br) {
+  line-height: var(--size-4-3);
+  background-image: none;
+}
+
+/* Divider (hr) — reading + editing share it and land ON the notebook grid:
+   exactly one line pitch (--rule-height == a blank Enter line) with the line
+   at the BOTTOM of the slot, right where every ruled line sits, so a divider
+   reads as one darker notebook line. Color = --hr-color (border + 8% ink), a
+   step darker than the rule (border + 3%). */
+.markdown-rendered hr {
+  height: var(--rule-height);
+  margin: 0;
+  border: none;
+  border-bottom: var(--hr-thickness) solid var(--hr-color);
+  box-sizing: border-box;
+}
+/* editing: the divider line <div class="hr cm-line"><br><hr> is already one
+   pitch on the grid, but the real <hr> floats mid-slot (off-grid). hide it
+   and let the line paint its OWN ruled underline, recolored to the divider
+   tone → the line lands exactly where a ruled line would, no double line. */
+.markdown-source-view.mod-cm6 .cm-line.hr {
+  --rule-color: var(--hr-color);
+}
+.markdown-source-view.mod-cm6 .cm-line.hr hr {
+  display: none;
+}
+
 /* -----------------------------------------------------
 
  ✼ Ruled-notebook lines ✼
@@ -1628,7 +1772,7 @@ body {
 
 	----------------------------------------------------- */
 :root {
-  --rule-height: 1.9em; /* single knob: line pitch (== line-height) */
+  --rule-height: 2em; /* single knob: line pitch (== line-height) */
 }
 /* --rule-color MUST be declared where --mono-rgb-100 exists (the theme
    class lives on <body>, not <html>). Declaring it on :root resolves
@@ -1643,6 +1787,15 @@ body {
     in srgb,
     var(--background-modifier-border),
     rgb(var(--mono-rgb-100)) 3%
+  );
+
+  /* divider (hr) — one step DARKER than the ruled underline so a real
+     divider reads stronger than a lone line. rule = border+3% ink,
+     hr = border+16%. declared here (not :root) so --mono-rgb-100 resolves. */
+  --hr-color: color-mix(
+    in srgb,
+    var(--background-modifier-border),
+    rgb(var(--mono-rgb-100)) 16%
   );
 
   /* scrollbar thumb — resolved here where --mono-rgb-100 exists. the
@@ -1688,10 +1841,15 @@ body {
 /* nav folder tree: the guide line is border-left on .nav-folder-children.
    nested folders' collapse chevrons sit on top of that line and read as a
    collision. mask just behind the chevron with the sidebar bg so the line
-   cleanly breaks at each arrow. sidebar bg = --background-secondary (the
-   nav containers themselves are transparent). */
+   cleanly breaks at each arrow. sidebar bg = --background-primary (measured;
+   the nav containers themselves are transparent). the chevron box is shorter
+   than the row, so extend the mask ±6px with box-shadow (same color, no
+   layout shift) → the line breaks over the full row, not a stub. */
 .nav-folder-children .tree-item-icon.collapse-icon {
   background-color: var(--background-primary);
+  box-shadow:
+    0 -10px 0 var(--background-primary),
+    0 10px 0 var(--background-primary);
 }
 /* on hover / active / selected rows the row highlight already covers the
    guide line, so the primary-colored mask would punch a lighter box into
@@ -1701,6 +1859,7 @@ body {
 .nav-folder-children .tree-item-self.has-focus .tree-item-icon.collapse-icon,
 .nav-folder-children .tree-item-self.is-selected .tree-item-icon.collapse-icon {
   background-color: transparent;
+  box-shadow: none;
 }
 
 /* Settings modal — group settings rendered as theme cards. tokens below
