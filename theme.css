@@ -679,7 +679,7 @@ body {
   --color-cyan: #28adca;
   --color-blue-rgb: 3, 105, 224;
   --color-blue: #3d73ff;
-  --color-purple-rgb: 121, 80, 242;
+  --color-purple-rgb: rgb(121, 80, 242);
   --color-purple: #7950f2;
   --color-pink-rgb: 245, 88, 173;
   --color-pink: #f558ad;
@@ -845,7 +845,7 @@ body {
   --color-cyan: #59e8d4;
   --color-blue-rgb: 2, 122, 255;
   --color-blue: #6a94fc;
-  --color-purple-rgb: 168, 130, 255;
+  --color-purple-rgb: rgb(168, 130, 255);
   --color-purple: #d0bfff;
   --color-pink-rgb: 250, 153, 205;
   --color-pink: #ffc9c9;
@@ -1284,11 +1284,11 @@ blockquote {
 .callout {
   /* render true color instead of blending into Dawn's paper bg */
   mix-blend-mode: normal;
-  background-color: rgba(var(--callout-color), var(--callout-tint-opacity));
+  background-color: color-mix(in srgb, var(--callout-color) calc(var(--callout-tint-opacity) * 100%), transparent);
   border: var(--callout-border-width) solid
-    rgba(var(--callout-color), var(--callout-border-opacity));
+    color-mix(in srgb, var(--callout-color) calc(var(--callout-border-opacity) * 100%), transparent);
   border-left-width: var(--callout-bar-width);
-  border-left-color: rgba(var(--callout-color), var(--callout-bar-opacity));
+  border-left-color: color-mix(in srgb, var(--callout-color) calc(var(--callout-bar-opacity) * 100%), transparent);
 }
 
 /* prism-q3 [!principle] — mapped onto Dawn purple token */
