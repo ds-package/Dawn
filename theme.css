@@ -1932,13 +1932,15 @@ body {
   background-image: none;
 }
 
-/* reading view lists: paint the notebook rules ONCE on the top-level list
-   box (full width, one line pitch per row) instead of per <li>/<p>. Per-li
-   painting started at the text edge and skipped every parent item; editing
-   paints every row full width, so reading now does the same. Rows stay
-   exactly one pitch tall (no li/p margins) so the repeating rule lines up. */
-.markdown-preview-section > :is(.el-ul, .el-ol) > :is(ul, ol) {
-  line-height: var(--rule-height);
+/* reading view lists: rules stay painted per text holder (li / p), so blocks
+   inside a list (headings, callouts, code, tables) are never ruled through.
+   Parent items (li with a nested list) only paint their FIRST row, so the
+   parent's own text line is ruled like editing does, without painting over
+   the nested rows. Rows are exact multiples of one pitch (list item padding
+   is 0 via --list-spacing) so the per-element rules line up. Loose-list <p>
+   margins are cleared for the same reason. */
+.markdown-rendered li:has(> ul),
+.markdown-rendered li:has(> ol) {
   background-image: repeating-linear-gradient(
     to bottom,
     transparent 0,
@@ -1946,10 +1948,17 @@ body {
     var(--rule-color) calc(var(--rule-height) - 1px),
     var(--rule-color) var(--rule-height)
   );
+  background-size: 100% var(--rule-height);
+  background-repeat: no-repeat;
 }
-.markdown-preview-section :is(ul, ol) :is(li, p) {
-  background-image: none;
+.markdown-rendered li p {
   margin-block: 0;
+}
+
+/* editing view lists: start the ruled lines at the text edge (content box),
+   like reading, instead of at the bullet / line start. */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-list-line {
+  background-clip: content-box;
 }
 
 /* zero body-text margins so a run of lines reads as continuous paper
