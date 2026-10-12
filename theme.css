@@ -1932,6 +1932,26 @@ body {
   background-image: none;
 }
 
+/* reading view lists: paint the notebook rules ONCE on the top-level list
+   box (full width, one line pitch per row) instead of per <li>/<p>. Per-li
+   painting started at the text edge and skipped every parent item; editing
+   paints every row full width, so reading now does the same. Rows stay
+   exactly one pitch tall (no li/p margins) so the repeating rule lines up. */
+.markdown-preview-section > :is(.el-ul, .el-ol) > :is(ul, ol) {
+  line-height: var(--rule-height);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--rule-height) - 1px),
+    var(--rule-color) calc(var(--rule-height) - 1px),
+    var(--rule-color) var(--rule-height)
+  );
+}
+.markdown-preview-section :is(ul, ol) :is(li, p) {
+  background-image: none;
+  margin-block: 0;
+}
+
 /* zero body-text margins so a run of lines reads as continuous paper
    (headings keep their own spacing → natural section breaks) */
 .markdown-rendered p,
