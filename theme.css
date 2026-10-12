@@ -1250,9 +1250,6 @@ del {
   border-radius: var(--scale-radius-2);
 }
 
-.markdown-rendered tbody > tr > td {
-  font-size: 14px;
-}
 
 /*--Lists--*/
 
@@ -1384,26 +1381,26 @@ blockquote {
 }
 
 .markdown-rendered table {
-  /* size to content, but never past the note width (then it wraps) */
+  /* same as Live Preview: size to content with NO width cap, so a wide table
+     keeps its natural column widths and scrolls sideways (the .el-table
+     wrapper below) instead of being squeezed into the note width. */
   width: max-content;
-  max-width: 100%;
   border-radius: var(--radius-m);
   overflow: hidden; /* clip cell corners to the radius (like the code box) */
   margin-bottom: var(--scale-dimension-size-25);
   background-color: var(--color-gray-alpha-25);
 } /*Reading Mode*/
+.markdown-rendered .el-table {
+  overflow-x: auto;
+}
 
 /*Table Headers & Body*/
 .markdown-rendered td,
 .markdown-rendered th {
-  /* full inner padding — the old rule set only top/bottom, so cells lost
-     their horizontal breathing room */
-  padding: var(--size-4-3) var(--size-4-4);
+  /* same cell padding as the Live Preview table widget
+     (.table-cell-wrapper: size-2-2 / size-4-2) */
+  padding: var(--size-2-2) var(--size-4-2);
 } /*Reading Mode*/
-
-.markdown-rendered tbody tr:nth-child(2n) {
-  background-color: var(--background-secondary);
-}
 
 /* Data View */
 .table-view-table > thead > tr > th {
