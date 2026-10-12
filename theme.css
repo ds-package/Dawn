@@ -1705,7 +1705,8 @@ body {
 .markdown-rendered h4,
 .markdown-rendered h5,
 .markdown-rendered h6 {
-  margin-top: var(--size-4-4);
+  margin-top: 0;
+  padding-top: var(--size-4-4);
   margin-bottom: var(--size-4-4);
 }
 .markdown-source-view.mod-cm6 .HyperMD-header-1,
@@ -1727,7 +1728,7 @@ body {
    editing tracks reading, and drop its ruled underline. */
 .markdown-source-view.mod-cm6
   .cm-line[class*="HyperMD-header"] + .cm-line:has(br) {
-  line-height: var(--size-4-3);
+  line-height: var(--size-4-4);
   background-image: none;
 }
 
@@ -1950,11 +1951,33 @@ body {
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock,
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-table-row,
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-footnote,
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header,
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-frontmatter,
 .markdown-source-view.mod-cm6 .cm-embed-block {
   background-image: none;
   line-height: var(--line-height-normal);
+}
+
+/* a line directly under a heading (no blank line between) gets the same
+   16px the reading view puts under a heading, so both modes match. */
+.markdown-source-view.mod-cm6
+  .cm-line.HyperMD-header
+  + .cm-line:not(.HyperMD-header):not(:has(> br:only-child)) {
+  padding-top: var(--size-4-4);
+}
+
+/* reading view: a blank source line is one ruled notebook line in editing.
+   Give every top-level block one line pitch below it so reading shows the
+   same gap. Headings keep their own 16px rhythm; the last block gets none. */
+.markdown-preview-section
+  > :is(.el-p, .el-ul, .el-ol, .el-blockquote, .el-pre, .el-table, .el-div, .el-embed):not(:last-child) {
+  margin-bottom: var(--rule-height);
+}
+
+/* heading lines: no ruled underline, but keep Obsidian's own per-level
+   --hN-line-height so a title is the same height in editing and reading
+   (the shared "never rule" group above forces --line-height-normal). */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header {
+  background-image: none;
 }
 
 /* blank lines (pressing Enter) render as <div class="cm-line"><br></div>.
