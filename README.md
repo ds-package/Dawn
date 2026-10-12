@@ -53,6 +53,42 @@ Fine-tune the design with detailed customization for better formatting.
 
 Make this part more stunning with feedback, please!
 
+## Changelog
+
+**2.0.9**
+- Reading-view table cells use the same 12px padding as Live Preview tables.
+
+**2.0.8**
+- Reading-view tables match Live Preview tables: no width cap (wide tables keep their column widths and scroll sideways), no zebra striping, no fixed 14px cell text.
+
+**2.0.7**
+- Reading-view lists: every item is ruled like in editing, but blocks inside a list (headings, callouts, code, tables) are never ruled through. Parent items rule their first row only.
+- Editing-view list rules start at the text edge, like reading.
+
+**2.0.6**
+- Fixed: in editing view, the ruled line cut through the text on the line directly below a heading.
+
+**2.0.5**
+- List item padding is 0 (`--list-spacing`), so ruled lines stay aligned in lists, including wrapped lines.
+
+**2.0.4**
+- Experiment: full-width list rules painted on the list box. Superseded by 2.0.7 (it misaligned lists containing headings, callouts, or code).
+
+**2.0.3**
+- Editing and reading views share the same heading line height and heading spacing (16px above and below).
+- Reading view shows one ruled line of space where editing has a blank line, so paragraph spacing matches.
+
+**2.0.2**
+- Obsidian 1.14 compatibility: `--setting-items-padding` was split into `-x` and `-y`; Dawn follows.
+- Removed unused tokens.
+
+**2.0.1**
+- The status bar is docked as a thin strip at the bottom instead of floating over panes (it no longer overlaps content such as chat inputs), with compact icons.
+- Extra space above a heading that follows a divider (`---`).
+
+**2.0.0**
+- Editorial paper-notebook refresh.
+
 ## LICENSE
 
 <p align="left"><a href="https://github.com/minheeyoon/Dawn/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a></p>
