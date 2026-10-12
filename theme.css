@@ -521,7 +521,7 @@ body {
   --status-bar-border-width: 1px 0 0 1px;
   --status-bar-font-size: var(--font-ui-smaller);
   --status-bar-text-color: var(--text-muted);
-  --status-bar-position: fixed;
+  --status-bar-position: static;
   --status-bar-radius: var(--radius-m);
 
   /* Swatch for color inputs */
@@ -1124,12 +1124,16 @@ body {
 
 /* (also applies to many plugins displaying file lists in the side bar) */
 
-/*Status Bar*/
+/*Status Bar — docked strip (not floating) so it never overlaps pane content
+  such as the Helm composer; compact icons*/
 .status-bar {
-  bottom: var(--size-4-3);
-  right: var(--size-4-3);
-  padding: var(--size-4-2) var(--size-4-2) var(--size-4-2);
-  gap: var(--size-2-3);
+  bottom: auto;
+  right: auto;
+  padding: 2px var(--size-4-2);
+  gap: var(--size-2-2);
+}
+.status-bar .status-bar-item.mod-clickable {
+  padding: 2px var(--size-2-3);
 }
 
 /*----Settings----*/
@@ -1745,6 +1749,22 @@ body {
   border: none;
   border-bottom: var(--hr-thickness) solid var(--hr-color);
   box-sizing: border-box;
+}
+/* a heading right after a divider needs extra air above, otherwise the
+   divider (drawn at the bottom of its slot) reads as touching the title */
+.markdown-rendered hr + h1,
+.markdown-rendered hr + h2,
+.markdown-rendered hr + h3,
+.markdown-rendered hr + h4,
+.markdown-rendered hr + h5,
+.markdown-rendered hr + h6,
+.markdown-rendered .el-hr + div > h1,
+.markdown-rendered .el-hr + div > h2,
+.markdown-rendered .el-hr + div > h3,
+.markdown-rendered .el-hr + div > h4,
+.markdown-rendered .el-hr + div > h5,
+.markdown-rendered .el-hr + div > h6 {
+  margin-top: var(--size-4-8);
 }
 /* editing: the divider line <div class="hr cm-line"><br><hr> is already one
    pitch on the grid, but the real <hr> floats mid-slot (off-grid). hide it
