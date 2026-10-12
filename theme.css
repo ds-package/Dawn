@@ -390,7 +390,7 @@ body {
 
   /* Lists */
   --list-indent: 1rem;
-  --list-spacing: 0.14rem;
+  --list-spacing: 0rem;
   --list-marker-color: var(--color-base-35);
   --list-marker-color-hover: var(--text-muted);
   --list-marker-color-collapsed: var(--text-accent);
