@@ -1983,6 +1983,9 @@ body {
   .cm-line.HyperMD-header
   + .cm-line:not(.HyperMD-header):not(:has(> br:only-child)) {
   padding-top: var(--size-4-4);
+  /* the ruled background starts at the top of the padding box; shift it down
+     by the same 16px so the rules still sit under the text (not through it). */
+  background-position-y: var(--size-4-4);
 }
 
 /* reading view: a blank source line is one ruled notebook line in editing.
