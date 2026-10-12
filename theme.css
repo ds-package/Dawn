@@ -105,7 +105,6 @@ body {
   /* Bold */
   --bold-weight: var(--font-semibold);
   --bold-color: inherit;
-  --bold-background: var(--static-alpha-black-150);
 
   /* Borders */
   --border-width: 1px;
@@ -369,7 +368,6 @@ body {
   --layer-dragged-item: 80;
 
   /* Line heights */
-  --line-height-large: 1.7;
   --line-height-normal: 1.6;
   --line-height-tight: 1.3;
 
@@ -621,9 +619,6 @@ body {
   --toggle-s-thumb-width: 15px;
 
   /* Vault name */
-  --vault-name-font-size: var(--font-ui-small);
-  --vault-name-font-weight: var(--font-medium);
-  --vault-name-color: var(--text-normal);
 
   /* Workspace */
   --workspace-background-translucent: rgba(var(--mono-rgb-0), 0.6);
@@ -815,7 +810,6 @@ body {
   --interactive-hover: var(--color-ash-500);
 
   --text-highlight-bg: var(--color-ash-500);
-  --text-highlight-bg-active: var(--color-yellow-alpha-100);
   --text-selection: hsla(var(--interactive-accent-hsl), 0.25);
 
   --input-shadow: transparent;
@@ -978,7 +972,6 @@ body {
   --interactive-hover: var(--color-base-25);
 
   --text-highlight-bg: var(--color-gray-alpha-100);
-  --text-highlight-bg-active: var(--color-yellow-alpha-50);
   --text-selection: hsla(var(--interactive-accent-hsl), 0.25);
 
   --input-shadow: transparent;
@@ -1886,14 +1879,15 @@ body {
    (padding/radius/border-width/corner-shape are theme-independent → :root;
    border-color needs --background-modifier-border → theme block above). */
 :root {
-  --setting-items-padding: var(--size-4-4);
+  --setting-items-padding-x: var(--size-4-4);
+  --setting-items-padding-y: var(--size-4-4);
   --setting-items-radius: var(--radius-l);
   --corner-shape: round;
   --setting-items-border-width: 1px;
 }
 .setting-group .setting-items {
   background-color: var(--background-primary-low);
-  padding: var(--setting-items-padding);
+  padding: var(--setting-items-padding-y) var(--setting-items-padding-x);
   border-radius: var(--setting-items-radius);
   corner-shape: var(--corner-shape);
   border: var(--setting-items-border-width) solid
