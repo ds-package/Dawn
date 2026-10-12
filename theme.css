@@ -1397,9 +1397,10 @@ blockquote {
 /*Table Headers & Body*/
 .markdown-rendered td,
 .markdown-rendered th {
-  /* same cell padding as the Live Preview table widget
-     (.table-cell-wrapper: size-2-2 / size-4-2) */
-  padding: var(--size-2-2) var(--size-4-2);
+  /* same cell padding as the Live Preview table widget: td padding
+     (table.table-editor: size-4-2 / size-4-1) + .table-cell-wrapper
+     (size-2-2 / size-4-2) = 12px on every side */
+  padding: var(--size-4-3);
 } /*Reading Mode*/
 
 /* Data View */
